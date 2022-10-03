@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:adv_flutter_weather/bg/weather_bg.dart';
 import 'package:adv_flutter_weather/utils/weather_type.dart';
 
-/// 主要提供两个实例
-/// 1. 切换天气类型时，会有过度动画
-/// 2. 动态改变宽高，绘制的相关逻辑同步发生改变
 class AnimViewWidget extends StatefulWidget {
   const AnimViewWidget({super.key});
 

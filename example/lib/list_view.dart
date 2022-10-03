@@ -14,7 +14,7 @@ class _ListViewWidgetState extends State<ListViewWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("listView"),
+        title: const Text("ListView"),
       ),
       body: ListView.separated(
         physics: const BouncingScrollPhysics(),
