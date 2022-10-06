@@ -27,7 +27,7 @@ class WeatherBg extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _WeatherBgState createState() => _WeatherBgState();
+  State<WeatherBg> createState() => _WeatherBgState();
 }
 
 class _WeatherBgState extends State<WeatherBg>
@@ -80,13 +80,13 @@ class _WeatherBgState extends State<WeatherBg>
     }
     needChange = false;
     return SizeInherited(
+      size: Size(widget.width, widget.height),
       child: AnimatedCrossFade(
         firstChild: firstWidget,
         secondChild: secondWidget,
         duration: const Duration(milliseconds: 300),
         crossFadeState: state,
       ),
-      size: Size(widget.width, widget.height),
     );
   }
 }

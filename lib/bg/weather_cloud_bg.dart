@@ -16,7 +16,7 @@ class WeatherCloudBg extends StatefulWidget {
   const WeatherCloudBg({Key? key, required this.weatherType}) : super(key: key);
 
   @override
-  _WeatherCloudBgState createState() => _WeatherCloudBgState();
+  State<WeatherCloudBg> createState() => _WeatherCloudBgState();
 }
 
 class _WeatherCloudBgState extends State<WeatherCloudBg> {
@@ -78,6 +78,9 @@ class BgPainter extends CustomPainter {
         case WeatherType.sunny:
           drawSunny(canvas, size);
           break;
+        case WeatherType.sunnyCloudy:
+          drawSunnyCloudy(canvas, size);
+          break;
         case WeatherType.cloudy:
           drawCloudy(canvas, size);
           break;
@@ -121,8 +124,20 @@ class BgPainter extends CustomPainter {
     }
   }
 
-  /// 绘制阳光
   void drawSunny(Canvas canvas, Size size) {
+    ui.Image image1 = images[1];
+    _paint.maskFilter = const MaskFilter.blur(BlurStyle.normal, 40);
+    canvas.save();
+    final sunScale = 1.2 * widthRatio;
+    canvas.scale(sunScale, sunScale);
+    var finalWidth = image1.width.toDouble() * sunScale;
+    var offset =
+        Offset(width.toDouble() - finalWidth, -image1.width.toDouble() / 3);
+    canvas.drawImage(image1, offset, _paint);
+    canvas.restore();
+  }
+
+  void drawSunnyCloudy(Canvas canvas, Size size) {
     ui.Image image = images[0];
     ui.Image image1 = images[1];
     _paint.maskFilter = const MaskFilter.blur(BlurStyle.normal, 40);
@@ -132,8 +147,6 @@ class BgPainter extends CustomPainter {
     var finalWidth = image1.width.toDouble() * sunScale;
     var offset =
         Offset(width.toDouble() - finalWidth, -image1.width.toDouble() / 3);
-    // var offset = Offset(width.toDouble() - image1.width.toDouble() * sunScale,
-    //     -image1.width.toDouble() / 2);
     canvas.drawImage(image1, offset, _paint);
     canvas.restore();
 

@@ -2,7 +2,7 @@ import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
-import '/flutter_weather_bg.dart';
+import '../adv_flutter_weather.dart';
 import '/utils/print_utils.dart';
 
 //// Sunny Night & Meteor Layer
@@ -13,7 +13,7 @@ class WeatherNightStarBg extends StatefulWidget {
       : super(key: key);
 
   @override
-  _WeatherNightStarBgState createState() => _WeatherNightStarBgState();
+  State<WeatherNightStarBg> createState() => _WeatherNightStarBgState();
 }
 
 class _WeatherNightStarBgState extends State<WeatherNightStarBg>
@@ -44,9 +44,9 @@ class _WeatherNightStarBgState extends State<WeatherNightStarBg>
   void initStarParams() {
     for (int i = 0; i < 100; i++) {
       var index = Random().nextInt(2);
-      _StarParam _starParam = _StarParam(index);
-      _starParam.init(width, height, widthRatio);
-      _starParams.add(_starParam);
+      _StarParam starParam = _StarParam(index);
+      starParam.init(width, height, widthRatio);
+      _starParams.add(starParam);
     }
     for (int i = 0; i < 4; i++) {
       _MeteorParam param = _MeteorParam();

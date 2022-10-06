@@ -20,10 +20,10 @@ class WeatherRainSnowBg extends StatefulWidget {
       : super(key: key);
 
   @override
-  _WeatherRainSnowBgState createState() => _WeatherRainSnowBgState();
+  State<WeatherRainSnowBg> createState() => WeatherRainSnowBgState();
 }
 
-class _WeatherRainSnowBgState extends State<WeatherRainSnowBg>
+class WeatherRainSnowBgState extends State<WeatherRainSnowBg>
     with SingleTickerProviderStateMixin {
   final List<ui.Image> _images = [];
   late AnimationController _controller;
@@ -130,24 +130,24 @@ class _WeatherRainSnowBgState extends State<WeatherRainSnowBg>
 
 class RainSnowPainter extends CustomPainter {
   final _paint = Paint();
-  final _WeatherRainSnowBgState _state;
+  final WeatherRainSnowBgState state;
 
-  RainSnowPainter(this._state);
+  RainSnowPainter(this.state);
 
   @override
   void paint(Canvas canvas, Size size) {
-    if (WeatherUtil.isSnow(_state.widget.weatherType)) {
+    if (WeatherUtil.isSnow(state.widget.weatherType)) {
       drawSnow(canvas, size);
-    } else if (WeatherUtil.isRainy(_state.widget.weatherType)) {
+    } else if (WeatherUtil.isRainy(state.widget.weatherType)) {
       drawRain(canvas, size);
     }
   }
 
   void drawRain(Canvas canvas, Size size) {
-    if (_state._images.length > 1) {
-      ui.Image image = _state._images[0];
-      if (_state._rainSnows.isNotEmpty) {
-        for (RainSnowParams element in _state._rainSnows) {
+    if (state._images.length > 1) {
+      ui.Image image = state._images[0];
+      if (state._rainSnows.isNotEmpty) {
+        for (RainSnowParams element in state._rainSnows) {
           move(element);
           ui.Offset offset = ui.Offset(element.x, element.y);
           canvas.save();
@@ -184,7 +184,7 @@ class RainSnowPainter extends CustomPainter {
 
   void move(RainSnowParams params) {
     params.y = params.y + params.speed;
-    if (WeatherUtil.isSnow(_state.widget.weatherType)) {
+    if (WeatherUtil.isSnow(state.widget.weatherType)) {
       double offsetX = sin(params.y / (300 + 50 * params.alpha)) *
           (1 + 0.5 * params.alpha) *
           params.widthRatio;
@@ -192,19 +192,19 @@ class RainSnowPainter extends CustomPainter {
     }
     if (params.y > params.height / params.scale) {
       params.y = -params.height * params.scale;
-      if (WeatherUtil.isRainy(_state.widget.weatherType) &&
-          _state._images.isNotEmpty) {
-        params.y = -_state._images[0].height.toDouble();
+      if (WeatherUtil.isRainy(state.widget.weatherType) &&
+          state._images.isNotEmpty) {
+        params.y = -state._images[0].height.toDouble();
       }
       params.reset();
     }
   }
 
   void drawSnow(Canvas canvas, Size size) {
-    if (_state._images.length > 1) {
-      ui.Image image = _state._images[1];
-      if (_state._rainSnows.isNotEmpty) {
-        for (RainSnowParams element in _state._rainSnows) {
+    if (state._images.length > 1) {
+      ui.Image image = state._images[1];
+      if (state._rainSnows.isNotEmpty) {
+        for (RainSnowParams element in state._rainSnows) {
           move(element);
           ui.Offset offset = ui.Offset(element.x, element.y);
           canvas.save();

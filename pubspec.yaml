@@ -13,9 +13,10 @@ dependencies:
 
 dependency_overrides:
   open_weather_client: 
-    git:
-      url: https://github.com/gslender/flutter_open_weather_package.git   
-      ref: 9d8a7812c2f2a6ffbdc05c04161367489917ecb8   
+    path: ../flutter_open_weather_package
+    # git:
+    #   url: https://github.com/gslender/flutter_open_weather_package.git   
+    #   ref: 9d8a7812c2f2a6ffbdc05c04161367489917ecb8   
 
 dev_dependencies:
   flutter_lints: ^2.0.1

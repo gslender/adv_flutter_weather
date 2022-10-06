@@ -14,7 +14,7 @@ class WeatherLightningBg extends StatefulWidget {
       : super(key: key);
 
   @override
-  _WeatherLightningBgState createState() => _WeatherLightningBgState();
+  State<WeatherLightningBg> createState() => _WeatherLightningBgState();
 }
 
 class _WeatherLightningBgState extends State<WeatherLightningBg>
@@ -63,7 +63,7 @@ class _WeatherLightningBgState extends State<WeatherLightningBg>
     });
 
     // Construct the animation data for the first lightning bolt
-    Animation _animation = TweenSequence([
+    Animation animation = TweenSequence([
       TweenSequenceItem(
           tween: Tween(begin: 0.0, end: 1.0)
               .chain(CurveTween(curve: Curves.easeIn)),
@@ -82,7 +82,7 @@ class _WeatherLightningBgState extends State<WeatherLightningBg>
     ));
 
     // Construct the animation data for the second lightning bolt
-    Animation _animation1 = TweenSequence([
+    Animation animation1 = TweenSequence([
       TweenSequenceItem(
           tween: Tween(begin: 0.0, end: 1.0)
               .chain(CurveTween(curve: Curves.easeIn)),
@@ -101,7 +101,7 @@ class _WeatherLightningBgState extends State<WeatherLightningBg>
     ));
 
     // Construct the animation data for the third lightning bolt
-    var _animation2 = TweenSequence([
+    Animation animation2 = TweenSequence([
       TweenSequenceItem(
           tween: Tween(begin: 0.0, end: 1.0)
               .chain(CurveTween(curve: Curves.easeIn)),
@@ -119,23 +119,23 @@ class _WeatherLightningBgState extends State<WeatherLightningBg>
       ),
     ));
 
-    _animation.addListener(() {
+    animation.addListener(() {
       if (_lightningParams.isNotEmpty) {
-        _lightningParams[0].alpha = _animation.value;
+        _lightningParams[0].alpha = animation.value;
       }
       setState(() {});
     });
 
-    _animation1.addListener(() {
+    animation1.addListener(() {
       if (_lightningParams.isNotEmpty) {
-        _lightningParams[1].alpha = _animation1.value;
+        _lightningParams[1].alpha = animation1.value;
       }
       setState(() {});
     });
 
-    _animation2.addListener(() {
+    animation2.addListener(() {
       if (_lightningParams.isNotEmpty) {
-        _lightningParams[2].alpha = _animation2.value;
+        _lightningParams[2].alpha = animation2.value;
       }
       setState(() {});
     });

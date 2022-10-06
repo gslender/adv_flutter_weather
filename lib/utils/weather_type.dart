@@ -10,6 +10,7 @@ enum WeatherType {
   lightSnow,
   sunnyNight,
   sunny,
+  sunnyCloudy,
   cloudy,
   cloudyNight,
   middleRainy,
