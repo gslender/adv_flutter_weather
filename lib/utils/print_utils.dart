@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 typedef WeatherPrint = void Function(String message,
     {int wrapWidth, String tag});
 
-const kDebug = true;
+const kDebug = false;
 
 WeatherPrint weatherPrint = _debugPrintThrottled;
 
